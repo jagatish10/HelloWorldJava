@@ -62,6 +62,7 @@
             </fileset>
         </copy>
     </target>
+              	
     <target name="clean">
         <delete dir="build/classes"/>
     </target>
@@ -75,6 +76,16 @@
             <classpath refid="Hello World.classpath"/>
         </javac>
     </target>
+    
+       <target name="war" depends="build">
+              			<war destfile="${build}/${ant.project.name}-${version}.war"
+              				webxml="${webxml}">
+              				<fileset dir="${web}" />
+              				<lib dir="${libruntime}" />
+              				<classes dir="${classes}" />
+              			</war>
+              		</target>        	
+              	
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
         <copy todir="${ant.library.dir}">
@@ -85,8 +96,10 @@
             <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
         </unzip>
     </target>
+              	
     <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
+              	
 </project>
