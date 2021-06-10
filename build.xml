@@ -77,14 +77,20 @@
         </javac>
     </target>
     
-              	<target name="war" depends="build-subprojects">
-              			<war destfile="${build}/${ant.project.name}-${version}.war"
-              				webxml="${webxml}">
-              				<fileset dir="${WebContent}" />
-              				<lib dir="${lib}" />
-              				<classes dir="${classes}" />
-              			</war>
-              		</target>
+              	<target name="war" description="Bundles the application as a WAR file" depends="clean, build">
+              	    <mkdir dir="WebContent/WEB-INF/classes"/>
+              	     
+              	    <copy includeemptydirs="false" todir="WebContent/WEB-INF/classes">
+              	            <fileset dir="build/classes">
+              	            <include name="**/*.class"/>
+              	            </fileset>
+              	    </copy>
+              	     
+              	    <war destfile="UploadServlet30.war"
+              	        basedir="WebContent"
+              	        needxmlfile="false">
+              	    </war>
+              	</target>
               	
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
