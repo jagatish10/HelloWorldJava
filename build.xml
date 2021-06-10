@@ -77,17 +77,14 @@
         </javac>
     </target>
     
-              	 <target name="war" depends="build-subprojects">
-              	    <war destfile="${dist.dir}\armstrong.ant.teat.war" 
-              	    	               webxml="WebRoot/WEB-INF/web.xml">
-              	    	<classes dir="WebRoot/WEB-INF/classes"/>
-              	    	<fileset dir="${dist.dir}"/>
-              	    	<lib dir="${lib.dir}"/>
-              	      <manifest>
-              	        <attribute name="AntCreateWar" value="ant.Create.War" />
-              	      </manifest>
-              	    </war>
-              	  </target>      	
+              	<target name="war" depends="build-subprojects">
+              			<war destfile="${build}/${ant.project.name}-${version}.war"
+              				webxml="${webxml}">
+              				<fileset dir="${WebContent}" />
+              				<lib dir="${lib}" />
+              				<classes dir="${classes}" />
+              			</war>
+              		</target>
               	
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
     <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
