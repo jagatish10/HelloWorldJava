@@ -77,7 +77,7 @@
         </javac>
     </target>
     
-              	<target name="war" description="Bundles the application as a WAR file" depends="clean, build">
+              	<target name="war" description="Bundles the application as a WAR file" depends="build">
               	    <mkdir dir="WebContent/WEB-INF/classes"/>
               	     
               	    <copy includeemptydirs="false" todir="WebContent/WEB-INF/classes">
