@@ -86,7 +86,7 @@
               	            </fileset>
               	    </copy>
               	     
-              	    <war destfile="UploadServlet30.war"
+              	    <war destfile="AntTest.war"
               	        basedir="WebContent"
               	        needxmlfile="false">
               	    </war>
